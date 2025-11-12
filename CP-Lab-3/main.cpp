@@ -125,7 +125,11 @@ long double approxPi(const int iterations) {
     for (int i = 1; i < iterations; i++) {
         const long double part1 = 16.0/(std::pow(5.0, 1.0+2.0*i));
         const long double part2 = 4.0/(std::pow(239.0, 1.0+2.0*i));
-        result -= (1.0/(1.0+2.0*i)) * (part1 - part2);
+        if (i%2 == 1) {
+            result -= (1.0/(1.0+2.0*i)) * (part1 - part2);
+        } else {
+            result += (1.0/(1.0+2.0*i)) * (part1 - part2);
+        }
         printf("Iter %d, Result: %.10Lg\n", i, result);
         //printf("\r");
     }
